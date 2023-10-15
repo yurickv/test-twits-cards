@@ -3,8 +3,9 @@ import { useState } from "react";
 import styles from "./TweetCard.module.css";
 import Image from "next/image";
 import IconGoIT from "../IconGoIT/IconGoIT";
+import { separateComma } from "@/sevrvice/helpers";
 
-export const TweetCard = ({ id, avatar, followers, tweets }) => {
+export const TweetCard = ({ avatar, followers, tweets }) => {
   const [follower, setFollower] = useState(Number(followers));
   const [isFollow, setIsFollow] = useState(false);
   const handleOnFollow = (evt) => {
@@ -16,8 +17,9 @@ export const TweetCard = ({ id, avatar, followers, tweets }) => {
     setFollower(follower + 1);
     setIsFollow(true);
   };
+  let folowersToSeparate = separateComma(follower);
   return (
-    <div className={styles.card} key={id}>
+    <div className={styles.card}>
       <IconGoIT />
       <div className={styles.bgImage}></div>
       <div className={styles.info}>
@@ -30,7 +32,7 @@ export const TweetCard = ({ id, avatar, followers, tweets }) => {
         </div>
         <div className={styles.textBox}>
           <p className={styles.text}> {tweets} tweets</p>
-          <p className={styles.text}> {follower} Followers</p>
+          <p className={styles.text}>{folowersToSeparate} Followers</p>
           <button
             onClick={handleOnFollow}
             className={styles.button}

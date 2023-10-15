@@ -102,4 +102,5 @@
   transform: translateX(-50%);
   top: 41%;
   z-index: 10;
+  width: 220px;
 }
