@@ -3,11 +3,11 @@ import { useState } from "react";
 import styles from "./TweetCard.module.css";
 import Image from "next/image";
 import IconGoIT from "../IconGoIT/IconGoIT";
-import { separateComma } from "@/sevrvice/helpers";
+import { separateComma } from "@/service/helpers";
 
-export const TweetCard = ({ avatar, followers, tweets }) => {
+export const TweetCard = ({ follow, followers, tweets, avatar, id }) => {
   const [follower, setFollower] = useState(Number(followers));
-  const [isFollow, setIsFollow] = useState(false);
+  const [isFollow, setIsFollow] = useState(follow);
   const handleOnFollow = (evt) => {
     if (isFollow) {
       setIsFollow(false);
