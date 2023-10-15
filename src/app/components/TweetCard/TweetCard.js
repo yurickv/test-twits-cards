@@ -4,19 +4,38 @@ import styles from "./TweetCard.module.css";
 import Image from "next/image";
 import IconGoIT from "../IconGoIT/IconGoIT";
 import { separateComma } from "@/service/helpers";
+import { changeFaworite } from "@/service/axios";
 
-export const TweetCard = ({ follow, followers, tweets, avatar, id }) => {
+export const TweetCard = ({ follow, followers, tweets, avatar, id, user }) => {
   const [follower, setFollower] = useState(Number(followers));
   const [isFollow, setIsFollow] = useState(follow);
+
+  let userData = {
+    follow: `${follow}`,
+    followers: `${followers}`,
+    tweets: `${tweets}`,
+    avatar: `${avatar}`,
+    id: `${id}`,
+    user: `${user}`,
+  };
+
   const handleOnFollow = (evt) => {
     if (isFollow) {
       setIsFollow(false);
       setFollower(follower - 1);
+      userData.follow = false;
+      userData.followers = Number(followers) - 1;
+      changeFaworite(id, user);
       return;
     }
+
     setFollower(follower + 1);
     setIsFollow(true);
+    userData.follow = true;
+    userData.followers = Number(followers) + 1;
+    changeFaworite(id, userData);
   };
+
   let folowersToSeparate = separateComma(follower);
   return (
     <div className={styles.card}>

@@ -15,9 +15,9 @@ export const TweetsList = () => {
     const fetchData = async () => {
       try {
         const data = await fetchCards(page);
-        const setUsersNext = await fetchCards(page + 1);
         setUsers(data);
 
+        const setUsersNext = await fetchCards(page + 1);
         setUsersNext.length !== 0 ? setIsNextPage(true) : setIsNextPage(false);
       } catch (error) {
         setSetError(error);
@@ -43,7 +43,7 @@ export const TweetsList = () => {
     <section className={styles.section}>
       {error ? <h1>Something vent wrong, reload page</h1> : ""}
       <ul className={styles.list}>
-        {users.map(({ id, follow, avatar, followers, tweets }) => (
+        {users.map(({ id, follow, avatar, followers, tweets, user }) => (
           <li key={id}>
             <TweetCard
               avatar={avatar}
@@ -51,6 +51,7 @@ export const TweetsList = () => {
               tweets={tweets}
               follow={follow}
               id={id}
+              user={user}
             />
           </li>
         ))}

@@ -10,3 +10,12 @@ export const fetchCards = async (page = 1) => {
     console.log(error);
   }
 };
+
+export const changeFaworite = async (id, data) => {
+  try {
+    const result = await axios.put(`/${id}`, data);
+    return result.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

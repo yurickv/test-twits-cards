@@ -18,6 +18,10 @@
     max-width: 1280px;
   }
 }
+.goBackLink {
+  margin-top: 24px;
+  padding: 10px;
+}
 .center {
   display: flex;
   gap: 8px;

@@ -7,12 +7,12 @@ import { TweetsList } from "../components/TweetsList/TweetsList";
 export default function Twits() {
   return (
     <main className={styles.box}>
-      <div>
-        <div className={styles.center}>
-          <FiArrowLeft />
-          <Link href="/">Go back Home </Link>
-        </div>
+      <div className={styles.goBackLink}>
+        <Link href="/">
+          <FiArrowLeft /> Go back Home{" "}
+        </Link>
       </div>
+
       <div className={styles.center}>
         <TweetsList />
       </div>
