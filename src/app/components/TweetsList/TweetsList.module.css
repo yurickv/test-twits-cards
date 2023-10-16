@@ -4,6 +4,12 @@
   justify-content: center;
   gap: 40px;
 }
+.select {
+  width: 250px;
+  color: #373737;
+  background-color: antiquewhite;
+  padding: 8px;
+}
 .list {
   display: flex;
   flex-wrap: wrap;
