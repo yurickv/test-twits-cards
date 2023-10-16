@@ -8,14 +8,14 @@
 }
 
 .center {
-  display: flex;
+  font-size: x-large;
   flex-direction: column;
-  gap: 36px;
+  display: flex;
+  gap: 32px;
   justify-content: center;
   align-items: center;
   position: relative;
   padding: 4rem 0;
-  max-width: 200px;
 }
 
 .center::before {
@@ -39,4 +39,13 @@
   position: absolute;
   filter: blur(45px);
   transform: translateZ(0);
+}
+.goButton {
+  margin-top: 300px;
+  font-size: x-large;
+  padding: 4rem;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
 }

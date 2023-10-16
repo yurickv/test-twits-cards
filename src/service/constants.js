@@ -1,5 +1,5 @@
 export const filterOptions = [
-  { value: "all", label: "SHOW ALL" },
-  { value: "follow", label: "FOLLOW" },
-  { value: "following", label: "FOLLOWING" },
+  { value: "", label: "SHOW ALL" },
+  { value: "false", label: "FOLLOW" },
+  { value: "true", label: "FOLLOWING" },
 ];

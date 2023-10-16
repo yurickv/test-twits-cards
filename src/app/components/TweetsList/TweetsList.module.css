@@ -9,6 +9,7 @@
   color: #373737;
   background-color: antiquewhite;
   padding: 8px;
+  border-radius: 10px;
 }
 .list {
   display: flex;

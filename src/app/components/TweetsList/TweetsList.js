@@ -13,22 +13,36 @@ export const TweetsList = () => {
   const [page, setPage] = useState(1);
   const [isNextPage, setIsNextPage] = useState(false);
   // const [selectedOption, setSelectedOption] = useState(filterOptions[0]);
-  // const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("");
 
-  // const handleFilterChange = (option) => {
-  //   setSelectedOption(option);
-  //   setFilter(option.value);
-  // };
+  const handleFilterChange = async (evt) => {
+    // console.log(evt.target.value);
+    setFilter(evt.target.value);
+    try {
+      setLoading(true);
+      setUsers([]);
+      setPage(1);
+      const data = await fetchCards(page, evt.target.value);
+      setUsers(data);
+
+      const setUsersNext = await fetchCards(page + 1, evt.target.value);
+      setUsersNext.length !== 0 ? setIsNextPage(true) : setIsNextPage(false);
+      setLoading(false);
+    } catch (error) {
+      setSetError(error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         setUsers([]);
-        const data = await fetchCards(page);
+        const data = await fetchCards(page, filter);
         setUsers(data);
 
-        const setUsersNext = await fetchCards(page + 1);
+        const setUsersNext = await fetchCards(page + 1, filter);
         setUsersNext.length !== 0 ? setIsNextPage(true) : setIsNextPage(false);
         setLoading(false);
       } catch (error) {
@@ -63,18 +77,18 @@ export const TweetsList = () => {
       )}
       {error ? <h1>Something vent wrong, reload page</h1> : ""}
       <section className={styles.section}>
-        {/* <select
-        name="selectedFruit"
-        className={styles.select}
-        onChange={handleFilterChange}
-        value={selectedOption}
-      >
-        {filterOptions.map(({ value, label }) => (
-          <option value={value} key={value}>
-            {label}
-          </option>
-        ))}
-      </select> */}
+        <select
+          // name="selectedCards"
+          className={styles.select}
+          onChange={handleFilterChange}
+          // value={selectedOption}
+        >
+          {filterOptions.map(({ value, label }) => (
+            <option value={value} key={value}>
+              {label}
+            </option>
+          ))}
+        </select>
 
         <ul className={styles.list}>
           {users.map(({ id, follow, avatar, followers, tweets, user }) => (

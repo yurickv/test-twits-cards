@@ -2,9 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://652c162ad0d1df5273ef215f.mockapi.io/users";
 
-export const fetchCards = async (page = 1) => {
+export const fetchCards = async (page = 1, follow) => {
   try {
-    const result = await axios.get(`/?page=${page}&limit=3`);
+    const result = await axios.get(
+      `/?page=${page}&limit=3${follow.trim() ? `&follow=${follow}` : ""}`
+    );
     return result.data;
   } catch (error) {
     console.log(error);
