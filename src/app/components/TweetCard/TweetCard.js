@@ -25,7 +25,7 @@ export const TweetCard = ({ follow, followers, tweets, avatar, id, user }) => {
       setFollower(follower - 1);
       userData.follow = false;
       userData.followers = Number(followers) - 1;
-      changeFaworite(id, user);
+      changeFaworite(id, userData);
       return;
     }
 

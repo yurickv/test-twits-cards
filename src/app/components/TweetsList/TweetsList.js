@@ -24,6 +24,7 @@ export const TweetsList = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        setUsers([]);
         const data = await fetchCards(page);
         setUsers(data);
 
@@ -52,10 +53,17 @@ export const TweetsList = () => {
   if ((users.length = 3)) arreyOfUsers = true;
 
   return (
-    <section className={styles.section}>
-      {loading ? <Dna height={200} width={200} /> : ""}
+    <>
+      {loading ? (
+        <div style={{ marginTop: "-70px" }}>
+          <Dna />{" "}
+        </div>
+      ) : (
+        ""
+      )}
       {error ? <h1>Something vent wrong, reload page</h1> : ""}
-      {/* <select
+      <section className={styles.section}>
+        {/* <select
         name="selectedFruit"
         className={styles.select}
         onChange={handleFilterChange}
@@ -68,27 +76,28 @@ export const TweetsList = () => {
         ))}
       </select> */}
 
-      <ul className={styles.list}>
-        {users.map(({ id, follow, avatar, followers, tweets, user }) => (
-          <li key={id}>
-            <TweetCard
-              avatar={avatar}
-              followers={followers}
-              tweets={tweets}
-              follow={follow}
-              id={id}
-              user={user}
-            />
-          </li>
-        ))}
-      </ul>
-      {isNextPage ? (
-        <button onClick={loadMore} className={styles.loadMore}>
-          LOAD MORE
-        </button>
-      ) : (
-        ""
-      )}
-    </section>
+        <ul className={styles.list}>
+          {users.map(({ id, follow, avatar, followers, tweets, user }) => (
+            <li key={id}>
+              <TweetCard
+                avatar={avatar}
+                followers={followers}
+                tweets={tweets}
+                follow={follow}
+                id={id}
+                user={user}
+              />
+            </li>
+          ))}
+        </ul>
+        {isNextPage ? (
+          <button onClick={loadMore} className={styles.loadMore}>
+            LOAD MORE
+          </button>
+        ) : (
+          ""
+        )}
+      </section>
+    </>
   );
 };
